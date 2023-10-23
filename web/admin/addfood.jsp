@@ -1,26 +1,43 @@
 <%-- 
-    Document   : addFood
-    Created on : Jul 12, 2023, 5:07:09 PM
+    Document   : login
+    Created on : Jul 11, 2023, 1:16:30 PM
     Author     : Aquarius
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="../css/myStyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <head>
-        <title>Welcome to Our Cafe</title>
+        <title>Coffee Haven Login</title>
+        <!-- Add your custom CSS styles here -->
         <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f7f1e3;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
+            .login-container {
+                background-color: #f5e5d1;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+                width: 400px;
+            }
+
+            .login-container h2 {
+                text-align: center;
+                color: #814c27;
+                margin-bottom: 20px;
+            }
 
             .form-group {
                 margin-bottom: 20px;
-
             }
 
             .form-group label {
@@ -31,7 +48,7 @@
             }
 
             .form-group input {
-                width: 100%;
+                width: 95%;
                 padding: 10px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
@@ -59,125 +76,72 @@
                 background-color: #66381a;
             }
 
-
-            input.button{
-                display: inline-block;
-                padding: 12px 30px;
-                margin: 20px 0;
-                background-color: #ebaa71;
-                color: #fff;
-                border: none;
+            .login-container a {
+                display: block;
+                text-align: center;
+                color: #814c27;
                 text-decoration: none;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                transition: background-color 0.3s;
-                width:95%
+                margin-top: 10px;
+                transition: color 0.3s;
+            }
 
+            .login-container a:hover {
+                color: #66381a;
+            }
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+
+            .logo img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                padding: 5px;
+            }
+
+            .submit{
+                width: 100%
             }
 
 
-            input.button:hover {
-                background-color: #e49958;
-                color: #ff3300;
-                text-decoration: none;
-            }
-
-            button{
-                display: inline-block;
-                padding: 2px 9px;
-                margin: 20px 0;
-                background-color: #ebaa71;
-                color: #fff;
-                border: none;
-                text-decoration: none;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                transition: background-color 0.3s;
-
-            }
-
-
-            button:hover {
-                background-color: #e49958;
-                color: #ff3300;
-                text-decoration: none;
-            }
-            select{
-                width: 100%;
-                padding: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-                font-size: 16px;
-                transition: border-color 0.3s;
-            }
-            .container{
-                width: 50%;
-            }
-
-
+            
         </style>
-
-
-
     </head>
     <body>
-        <nav>
-            <ul class="navigation-menu">
-
-                <li ><a href="./home">Home</a></li>
-                <li class="active" ><a href="./foodList">View Food</a></li>
-                <li><img src="../img/logo.png"></li>
-                <li><a href="./showFeedback">Show Feedback</a></li>
-                <!--                <li class="dropdown">
-                                    <a href="#">Setting</a>
-                                    <ul>
-                                        <li><a href="./update">Change Information</a></li>
-                                        <li><a href="#">Change Password</a></li>
-                                    </ul>
-                                </li>-->
-
-                <li><a href="./logout">Logout</a></li>
-
-            </ul>
-        </nav>
-        <div class="container">
-            <form onsubmit="return validateForm()" class="login-form"action="addFood" method="post" >
+        <div class="login-container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Coffee Haven Logo"/>
+            </div>
+            <h2>Welcome to Coffee Haven</h2>
+            <form id="login-form" action="login" method="post" onsubmit="return validateForm()">
                 <div class="form-group">
-                    <label>Name</label> <input id="name" type="text" name="name" value="<%=request.getParameter("name")==null?"":request.getParameter("name")%>"> </div>
+                    <label for="username">Username/Phone</label>
+                    <input type="text" id="username" name="username"value="${username}" >
+                </div>
                 <div class="form-group">
-                    <label>Price</label> <input id="price" type="text" name="price" step="any"value="1"> </div>
-                <div class="form-group"> <label>Sale Percent</label> <input id="sale" type="text" step="any" name="sale" value="1"> </div>
-                <div class="form-group"> <label>Category</label> <select name ="category">
-                        <option>Food</option><option>Dessert</option><option>Beverage</option>
-                    </select> </div>
-
-                <div class="form-group">
-                    <label> Description</label> <input type="text" name="description"<%=request.getParameter("description")==null?"":request.getParameter("description")%> > </div>
-                <input type="submit" value="Submit" class="submit-btn">
-                <p id="error-message"></p>
-            </form></div>
-
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" >              
+                </div>
+                <div class="submit">
+                    <button type="submit" class="submit-btn">Login</button>
+                </div>
+                <a href = "signUp" target="_blank">Sign up</a>
+                <p style="color: red;" id="errorMessage" class="error-message" name="error">${error}</p> 
+            </form>
+        </div>
 
         <script>
-
             function validateForm() {
-                var name = document.getElementById("name").value;
-                var price = document.getElementById("price").value;
-                var sale = document.getElementById("sale").value;
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                var errorMessage = document.getElementById("errorMessage");
 
-                var errorMessage = document.getElementById("error-message");
-
-                if (name === "" || price === "" || sale === "") {
-                    errorMessage.innerText = "Please enter all input.";
-                    return false;
-                }
-
-                if (price <= 0) {
-                    errorMessage.innerText = "The price must be greater than 0.";
-                    return false;
-                }
-                if (sale < 0) {
-                    errorMessage.innerText = "The sale price must be greater than or equals to 0.";
+                if (username === "" || password === "") {
+                    errorMessage.innerText = "Please enter both username and password.";
                     return false;
                 }
 
@@ -185,5 +149,4 @@
             }
         </script>
     </body>
-
 </html>
